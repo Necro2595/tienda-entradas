@@ -7,18 +7,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { BannerComponent } from './banner/banner.component';
+import { TarjetaComponent } from './tarjeta/tarjeta.component';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaginaInicialComponent,
     TiendaComponent,
-    CarritoComponent
+    CarritoComponent,
+    BannerComponent,
+    TarjetaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule,
+    MatIconModule,
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
