@@ -16,7 +16,7 @@ export class BannerComponent implements OnInit {
   }
 
   goToCart(){
-    this.router.navigateByUrl('/tienda');
+    this.router.navigateByUrl('/carrito');
   }
 
 }

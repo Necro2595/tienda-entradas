@@ -1,1 +1,21 @@
 <app-banner></app-banner>
+<div class="gridCard">
+    <mat-card class="card" *ngFor="let evento of listaEventos; index as i">
+        <mat-card-header>
+            <mat-card-title>{{ evento.title}}</mat-card-title>
+            <mat-card-subtitle>{{ evento.subtitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="evento.image">
+        <mat-card-content>
+            <p>{{evento.place}}</p>
+            <p>{{formatDate(evento.startDate)}} - {{formatDate(evento.endDate)}}</p>
+            <p *ngIf="isLargeScreen" [innerHtml]="checkText(evento.description)"></p>
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-flat-button color="primary" class="buttonFooter" (click)="goToShop(evento.id)">
+                Comprar
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</div>
+

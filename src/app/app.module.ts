@@ -11,6 +11,9 @@ import { BannerComponent } from './banner/banner.component';
 import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,10 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
+    HttpClientModule,
     MatIconModule,
-    
+    MatCardModule,
+    MatButtonModule
 
   ],
   providers: [],

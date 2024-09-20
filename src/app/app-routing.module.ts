@@ -10,7 +10,7 @@ const routes: Routes = [
     component: PaginaInicialComponent
   },
   {
-    path: 'tienda',
+    path: 'tienda/:id',
     component: TiendaComponent
   },
   {

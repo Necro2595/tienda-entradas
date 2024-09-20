@@ -22,8 +22,13 @@ export class EventoService {
   getEventInfo(id: number): Observable<any>{
     if(id == 68){
       return this.http.get(this.eventoInfo68);
-    } else {
+    } else if(id == 184) {
       return this.http.get(this.eventoInfo184);
+    } else{
+      return new Observable<any>(observer =>{
+        observer.next([]);
+        observer.complete();
+      });
     }
     
   }

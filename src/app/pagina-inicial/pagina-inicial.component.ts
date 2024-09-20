@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EventoService } from 'src/servicios/evento/evento.service';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -7,9 +11,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginaInicialComponent implements OnInit {
 
-  constructor() { }
+  listaEventos: any[] = [];
+  isLargeScreen: boolean = true;
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private eventoService: EventoService,
+    private breakPointObserver: BreakpointObserver,
+    private domSanitizer: DomSanitizer
+  ) { }
+
+  async ngOnInit(): Promise<void> {
+    this.checkScreenSize();
+
+    this.eventoService.getEvents().subscribe(data =>{
+      this.listaEventos = data;
+      this.listaEventos.sort((a,b) => a.endDate - b.endDate);
+    });
+  }
+
+  checkScreenSize(){
+    this.breakPointObserver.observe(
+      [Breakpoints.XLarge,Breakpoints.Large]).subscribe(result => {
+        this.isLargeScreen = result.matches;
+      })
+  }
+
+  formatDate(timestamp: string){
+
+    const date = new Date(+timestamp);
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  goToShop(id: string){
+    this.router.navigateByUrl('/tienda/'+id);
+  }
+
+  checkText(text: string){
+    return this.domSanitizer.bypassSecurityTrustHtml(text);
   }
 
 }
