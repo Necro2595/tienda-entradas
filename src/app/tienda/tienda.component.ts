@@ -11,6 +11,7 @@ export class TiendaComponent implements OnInit {
 
   localShoppingCart: any[] = [];
   event!: any;
+  idEvent: number = 0;
 
   constructor(
     private router: Router,
@@ -25,14 +26,42 @@ export class TiendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params =>{
-      const id: any = params['id'] || null;
-      if(id != null){
-        this.eventoService.getEventInfo(id).subscribe(data =>{
-          this.event = data;
-        })
-      }
-    })
+    
+    let idRoute: string  = this.activatedRoute.snapshot.paramMap.get('id') || '';
+
+    if(idRoute && idRoute != ''){
+      this.idEvent = +idRoute;
+      this.eventoService.getEventInfo(this.idEvent).subscribe(data =>{
+        this.event = data;
+        this.event.sessions.sort((a: any,b: any) => a.date - b.date);
+      })
+    }
+  }
+
+  formatDate(timestamp: string){
+
+    const date = new Date(+timestamp);
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  addSession(session: any){
+
+  }
+
+  removeSession(session: any){
+
+  }
+
+  sessionsAdded(session: any){
+
+  }
+
+  sessionsAvailable(sessions: string){
+
   }
 
 }
