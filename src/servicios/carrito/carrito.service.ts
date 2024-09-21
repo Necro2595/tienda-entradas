@@ -25,7 +25,6 @@ export class CarritoService {
         if(indexSession != -1){
           let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
           this.localShoppingCart[index].sessions[indexSession].availability = n;
-          //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
           this.updateCart();
         } else {
           let sessionToAdd: any = {
@@ -33,7 +32,6 @@ export class CarritoService {
             availability: 1
           }
           this.localShoppingCart[index].sessions.push(sessionToAdd);
-          //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
           this.updateCart();
         }
       } else {
@@ -48,7 +46,6 @@ export class CarritoService {
         }
         
         this.localShoppingCart.push(eventToAdd);
-        //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
         this.updateCart();
       }
     } else {
@@ -65,7 +62,6 @@ export class CarritoService {
       }
       
       this.localShoppingCart.push(eventToAdd);
-      //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
       this.updateCart();
     }
   }
@@ -79,16 +75,12 @@ export class CarritoService {
           let n = this.localShoppingCart[index].sessions[indexSession].availability - 1;
           if(n != 0 ){
             this.localShoppingCart[index].sessions[indexSession].availability = n;
-            //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
             this.updateCart();
           } else {
             let newList = this.localShoppingCart[index].sessions.filter((e: any,indexB: any) => indexB != indexSession);
             if(newList.length == 0){
-              let newFilteredList = this.localShoppingCart.filter((e:any,indexA:any) => index != indexA);
+              let newFilteredList = this.localShoppingCart.filter((e:any,indexA:any) => index !== indexA);
               this.localShoppingCart = newFilteredList;
-              this.updateCart();
-            } else{
-              this.localShoppingCart = newList;
               this.updateCart();
             }
           }

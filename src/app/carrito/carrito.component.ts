@@ -59,7 +59,7 @@ export class CarritoComponent implements OnInit {
   checkAvailability(element: any, event: any){
     let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
     
-    let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date = element.date);
+    let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == element.date);
   
     return this.localShoppingCart[index].sessions[indexSession].availability;
   }

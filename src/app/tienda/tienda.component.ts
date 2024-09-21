@@ -55,67 +55,10 @@ export class TiendaComponent implements OnInit {
   }
 
   addSession(session: any, event: any){
-    /*if(this.localShoppingCart.length != 0){
-      let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
-      if(index != -1){
-        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
-        if(indexSession != -1){
-          let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
-          this.localShoppingCart[index].sessions[indexSession].availability = n;
-          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-        } else {
-          let sessionToAdd: any = {
-            date: session.date,
-            availability: 1
-          }
-          this.localShoppingCart[index].sessions.push(sessionToAdd);
-          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-        }
-      } else {
-        let eventToAdd: any = {
-          id: this.idEvent,
-          title: this.event.event.title,
-          subtitle: this.event.event.subtitle,
-          sessions: [{
-            date: session.date,
-            availability: 1
-          }]
-        }
-        
-        this.localShoppingCart.push(eventToAdd);
-        localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-      }
-    } else {
-      let eventToAdd: any = {
-        id: this.idEvent,
-        title: this.event.event.title,
-        subtitle: this.event.event.subtitle,
-        sessions: [
-          {
-            date: session.date,
-            availability: 1
-          }
-        ]
-      }
-      
-      this.localShoppingCart.push(eventToAdd);
-      localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-    }*/
     this.carritoService.addSession(session,event);
   }
 
   removeSession(session: any,event:any){
-    /*if(this.localShoppingCart.length != 0){
-      let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
-      if(index != -1){
-        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
-        if(indexSession != -1){
-          let n = this.localShoppingCart[index].sessions[indexSession].availability - 1;
-          this.localShoppingCart[index].sessions[indexSession].availability = n;
-          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-        }
-      } 
-    } */
    this.carritoService.removeSession(session,event)
   }
 
