@@ -13,15 +13,24 @@ export class PaginaInicialComponent implements OnInit {
 
   listaEventos: any[] = [];
   isLargeScreen: boolean = true;
+  localShoppingCart: any[] = [];
 
   constructor(
     private router: Router,
     private eventoService: EventoService,
     private breakPointObserver: BreakpointObserver,
     private domSanitizer: DomSanitizer
-  ) { }
+  ) {
+    if(localStorage.getItem('shoppingCart') == null){
+      localStorage.setItem('shoppingCart',JSON.stringify([]));
+    } else{
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+    }
+    
 
-  async ngOnInit(): Promise<void> {
+   }
+
+  ngOnInit() {
     this.checkScreenSize();
 
     this.eventoService.getEvents().subscribe(data =>{

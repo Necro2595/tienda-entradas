@@ -2,10 +2,10 @@
 <div class="gridCard">
     <mat-card class="card" *ngFor="let evento of listaEventos; index as i">
         <mat-card-header>
-            <mat-card-title>{{ evento.title}}</mat-card-title>
-            <mat-card-subtitle>{{ evento.subtitle}}</mat-card-subtitle>
+            <mat-card-title (click)="goToShop(evento.id)">{{ evento.title}}</mat-card-title>
+            <mat-card-subtitle (click)="goToShop(evento.id)">{{ evento.subtitle}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="evento.image">
+        <img mat-card-image [src]="evento.image" (click)="goToShop(evento.id)">
         <mat-card-content>
             <p>{{evento.place}}</p>
             <p>{{formatDate(evento.startDate)}} - {{formatDate(evento.endDate)}}</p>
