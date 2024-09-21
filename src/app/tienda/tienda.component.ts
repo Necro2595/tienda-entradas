@@ -60,8 +60,31 @@ export class TiendaComponent implements OnInit {
 
   }
 
-  sessionsAvailable(sessions: string){
+  sessionsAvailable(session:any){
+    let sessionsAdded: number = 0;
+    let sessionsAvailable: number = 0;
 
+    this.event.sessions.forEach((element:any) => {
+      if(element.date == session){
+        sessionsAvailable = element.availability;
+      }
+    });
+    if(this.localShoppingCart.length != 0){
+      this.localShoppingCart.forEach((elementA:any) => {
+        if(elementA.id == this.idEvent){
+          elementA.sessions.forEach((elementB: any) => {
+            if(elementB.date == session){
+              sessionsAdded = elementB.availability;
+            }
+          })
+        }
+      })
+  
+      return sessionsAvailable - sessionsAdded;
+    } else {
+      return sessionsAvailable;
+    }
+    
   }
 
 }

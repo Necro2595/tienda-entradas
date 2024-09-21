@@ -5,7 +5,7 @@
                 <h3>{{event.event.title}} - {{event.event.subtitle}}</h3>
                 <div class="row" *ngFor="let session of event.sessions">
                     <div class="col-6">
-                        <span>{{formatDate(session.date)}} - Disponibles:{{sessionsAvailable(session.availability)}}</span>
+                        <span>{{formatDate(session.date)}} - Disponibles:{{sessionsAvailable(session.date)}}</span>
                     </div>
                     <div class="col-2">
                         <button mat-icon-button color="primary" (click)="removeSession(session)">
@@ -13,10 +13,10 @@
                         </button>
                     </div>
                     <div class="col-2">
-                        <span>{{sessionsAdded(session)}}</span>
+                        <span>{{sessionsAdded(session.date)}}</span>
                     </div>
                     <div class="col-2">
-                        <button mat-icon-button color="primary" (click)="addSession(session)">
+                        <button mat-icon-button color="primary" (click)="addSession(session)" [disabled]="sessionsAvailable(session.date) == 0">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
