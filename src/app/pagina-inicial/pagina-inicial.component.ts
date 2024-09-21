@@ -26,8 +26,6 @@ export class PaginaInicialComponent implements OnInit {
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
-    
-
    }
 
   ngOnInit() {

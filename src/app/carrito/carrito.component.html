@@ -1,1 +1,32 @@
 <app-banner></app-banner>
+<div *ngIf="localShoppingCart.length != 0">
+    <mat-card *ngFor="let event of localShoppingCart; index as i">
+        <h1>{{event.title}}</h1>
+        <div class="row" *ngFor="let element of event.list">
+            <div class="col-4">
+                {{element.date}}
+            </div>
+            <div class="col-4">
+                {{element.quantity}}
+            </div>
+            <div class="col-4">
+                <button (click)="deteleElement(element)">
+                    <img [src]="'/assets/imgtrash.png'">
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</div>
+<div *ngIf="localShoppingCart.length == 0">
+    <mat-card>
+        <span>
+            No hay elementos en el carrito
+        </span>
+    </mat-card>
+</div>
+<div class="row">
+    <button mat-raised-button class="button" color="primary" (click)="goToHome()">
+        Vover
+    </button>
+</div>
+
