@@ -83,6 +83,11 @@ export class TiendaComponent implements OnInit {
   }
 
   sessionsAvailable(session:any){
+    
+    this.carritoService.cart.subscribe(cart => {
+      this.localShoppingCart = cart;
+    });
+
     let sessionsAdded: number = 0;
     let sessionsAvailable: number = 0;
 

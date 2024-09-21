@@ -82,6 +82,9 @@ export class CarritoService {
               let newFilteredList = this.localShoppingCart.filter((e:any,indexA:any) => index !== indexA);
               this.localShoppingCart = newFilteredList;
               this.updateCart();
+            } else {
+              this.localShoppingCart[index].sessions = newList;
+              this.updateCart();
             }
           }
           
