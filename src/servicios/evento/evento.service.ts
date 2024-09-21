@@ -26,7 +26,7 @@ export class EventoService {
       return this.http.get(this.eventoInfo184);
     } else{
       return new Observable<any>(observer =>{
-        observer.next([]);
+        observer.next(null);
         observer.complete();
       });
     }
