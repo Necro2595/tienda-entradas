@@ -107,31 +107,11 @@ export class TiendaComponent implements OnInit {
       if(index != -1){
         let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
         if(indexSession != -1){
-          let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
+          let n = this.localShoppingCart[index].sessions[indexSession].availability - 1;
           this.localShoppingCart[index].sessions[indexSession].availability = n;
           localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-        } else {
-          let sessionToAdd: any = {
-            date: session.date,
-            availability: 1
-          }
-          this.localShoppingCart[index].sessions.push(sessionToAdd);
-          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
         }
-      } else {
-        let eventToAdd: any = {
-          id: this.idEvent,
-          title: this.event.title,
-          subtitle: this.event.subtitle,
-          sessions: [{
-            date: session.date,
-            availability: 1
-          }]
-        }
-        
-        this.localShoppingCart.push(eventToAdd);
-        localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-      }
+      } 
     } 
   }
 
