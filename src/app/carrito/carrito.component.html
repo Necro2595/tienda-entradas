@@ -2,16 +2,18 @@
     <mat-card *ngFor="let event of localShoppingCart; index as i">
         <h4>{{event.title}} - {{event.subtitle}}</h4>
         <div class="row" *ngFor="let element of event.sessions">
-            <div class="col-4">
-                {{formatDate(element.date)}}
-            </div>
-            <div class="col-4">
-                {{checkAvailability(element, event)}}
-            </div>
-            <div class="col-4">
-                <button (click)="deteleElement(event, element)">
-                    <img [src]="'/assets/imgtrash.png'">
-                </button>
+            <div class="container">
+                <div class="col-4" style="padding-right: 20px;">
+                    {{formatDate(element.date)}}
+                </div>
+                <div class="col-4">
+                    x{{checkAvailability(element, event)}}
+                </div>
+                <div class="col-4">
+                    <button class="buttonTrash" (click)="deteleElement(event, element)">
+                        <img [src]="'/assets/img/trash.png'" class="img">
+                    </button>
+                </div>
             </div>
         </div>
     </mat-card>
