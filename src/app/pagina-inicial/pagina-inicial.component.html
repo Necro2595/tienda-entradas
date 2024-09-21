@@ -11,11 +11,9 @@
             <p>{{formatDate(evento.startDate)}} - {{formatDate(evento.endDate)}}</p>
             <p *ngIf="isLargeScreen" [innerHtml]="checkText(evento.description)"></p>
         </mat-card-content>
-        <mat-card-footer>
-            <button mat-flat-button color="primary" class="buttonFooter" (click)="goToShop(evento.id)">
+        <button mat-flat-button color="primary" class="buttonFooter" (click)="goToShop(evento.id)">
                 Comprar
-            </button>
-        </mat-card-footer>
+        </button>
     </mat-card>
 </div>
 

@@ -13,6 +13,10 @@
     border-color: lightgray;
     border-style: solid;
     margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
 }
 
 @media (min-width: 960px) {
@@ -29,6 +33,5 @@
 
 .buttonFooter{
     width: -webkit-fill-available;
-    position: static;
-    top:100%;
+    align-self: flex-end;
 }
