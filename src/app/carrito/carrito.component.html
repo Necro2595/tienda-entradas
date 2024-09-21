@@ -1,6 +1,6 @@
 <div *ngIf="localShoppingCart.length != 0">
     <mat-card *ngFor="let event of localShoppingCart; index as i">
-        <h1>{{event.title}}</h1>
+        <h1>{{event.title}} - {{event.subtitle}}</h1>
         <div class="row" *ngFor="let element of event.list">
             <div class="col-4">
                 {{element.date}}

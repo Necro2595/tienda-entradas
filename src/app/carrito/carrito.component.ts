@@ -18,6 +18,10 @@ export class CarritoComponent implements OnInit {
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
+
+    window.addEventListener('storage', (e) => {
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+    })
   }
 
   ngOnInit(): void {

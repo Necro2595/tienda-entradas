@@ -1,36 +1,34 @@
-<div class=" container">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div *ngIf="event != null">
-            <mat-card>
-                <h3>{{event.event.title}} - {{event.event.subtitle}}</h3>
-                <div class="row" *ngFor="let session of event.sessions">
-                    <div class="col-6">
-                        <span>{{formatDate(session.date)}} - Disponibles:{{sessionsAvailable(session.date)}}</span>
-                    </div>
-                    <div class="col-2">
-                        <button mat-icon-button color="primary" (click)="removeSession(session)">
-                            <mat-icon>remove</mat-icon>
-                        </button>
-                    </div>
-                    <div class="col-2">
-                        <span>{{sessionsAdded(session.date)}}</span>
-                    </div>
-                    <div class="col-2">
-                        <button mat-icon-button color="primary" (click)="addSession(session)" [disabled]="sessionsAvailable(session.date) == 0">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div *ngIf="event != null">
+        <mat-card>
+            <h3>{{event.event.title}} - {{event.event.subtitle}}</h3>
+            <div class="row container" *ngFor="let session of event.sessions">
+                <div class="col-6">
+                    <span>{{formatDate(session.date)}} - Disponibles:{{sessionsAvailable(session.date)}}</span>
                 </div>
-            </mat-card>
-        </div>
-        <div *ngIf="event == null">
-            <mat-card>
-                <span>No hay eventos para mostrar</span>
-            </mat-card>
-        </div>
+                <div class="col-2">
+                    <button mat-icon-button color="primary" (click)="removeSession(session)" [disabled]="sessionsAvailable(session.date) - sessionsAdded(session.date) == sessionsAvailable(session.date)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </div>
+                <div class="col-2">
+                    <span>{{sessionsAdded(session.date)}}</span>
+                </div>
+                <div class="col-2">
+                    <button mat-icon-button color="primary" (click)="addSession(session)" [disabled]="sessionsAvailable(session.date) == 0">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <app-carrito></app-carrito>
+    <div *ngIf="event == null">
+        <mat-card>
+            <span>No hay eventos para mostrar</span>
+        </mat-card>
     </div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <app-carrito></app-carrito>
 </div>
 

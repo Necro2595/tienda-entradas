@@ -23,6 +23,10 @@ export class TiendaComponent implements OnInit {
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
+
+    window.addEventListener('storage', (e) => {
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+    })
   }
 
   ngOnInit(): void {
@@ -49,15 +53,106 @@ export class TiendaComponent implements OnInit {
   }
 
   addSession(session: any){
-
+    if(this.localShoppingCart.length != 0){
+      let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
+      if(index != -1){
+        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
+        if(indexSession != -1){
+          let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
+          this.localShoppingCart[index].sessions[indexSession].availability = n;
+          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+        } else {
+          let sessionToAdd: any = {
+            date: session.date,
+            availability: 1
+          }
+          this.localShoppingCart[index].sessions.push(sessionToAdd);
+          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+        }
+      } else {
+        let eventToAdd: any = {
+          id: this.idEvent,
+          title: this.event.title,
+          subtitle: this.event.subtitle,
+          sessions: [{
+            date: session.date,
+            availability: 1
+          }]
+        }
+        
+        this.localShoppingCart.push(eventToAdd);
+        localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+      }
+    } else {
+      let eventToAdd: any = {
+        id: this.idEvent,
+        title: this.event.title,
+        subtitle: this.event.subtitle,
+        sessions: [
+          {
+            date: session.date,
+            availability: 1
+          }
+        ]
+      }
+      
+      this.localShoppingCart.push(eventToAdd);
+      localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+    }
   }
 
   removeSession(session: any){
-
+    if(this.localShoppingCart.length != 0){
+      let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
+      if(index != -1){
+        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
+        if(indexSession != -1){
+          let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
+          this.localShoppingCart[index].sessions[indexSession].availability = n;
+          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+        } else {
+          let sessionToAdd: any = {
+            date: session.date,
+            availability: 1
+          }
+          this.localShoppingCart[index].sessions.push(sessionToAdd);
+          localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+        }
+      } else {
+        let eventToAdd: any = {
+          id: this.idEvent,
+          title: this.event.title,
+          subtitle: this.event.subtitle,
+          sessions: [{
+            date: session.date,
+            availability: 1
+          }]
+        }
+        
+        this.localShoppingCart.push(eventToAdd);
+        localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+      }
+    } 
   }
 
   sessionsAdded(session: any){
+    let sessionsAdded: number = 0;
 
+    if(this.localShoppingCart.length != 0){
+      this.localShoppingCart.forEach((elementA:any) => {
+        if(elementA.id == this.idEvent){
+          elementA.sessions.forEach((elementB: any) => {
+            if(elementB.date == session){
+              sessionsAdded = elementB.availability;
+            }
+          })
+        }
+      })
+  
+      return sessionsAdded;
+    } else {
+      return sessionsAdded;
+    }
   }
 
   sessionsAvailable(session:any){
@@ -83,8 +178,7 @@ export class TiendaComponent implements OnInit {
       return sessionsAvailable - sessionsAdded;
     } else {
       return sessionsAvailable;
-    }
-    
+    } 
   }
 
 }
