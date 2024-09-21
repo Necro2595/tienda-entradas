@@ -8,7 +8,6 @@ import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.componen
 import { TiendaComponent } from './tienda/tienda.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { BannerComponent } from './banner/banner.component';
-import { TarjetaComponent } from './tarjeta/tarjeta.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,8 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     PaginaInicialComponent,
     TiendaComponent,
     CarritoComponent,
-    BannerComponent,
-    TarjetaComponent
+    BannerComponent
   ],
   imports: [
     BrowserModule,
