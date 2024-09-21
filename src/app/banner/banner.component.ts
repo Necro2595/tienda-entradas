@@ -19,4 +19,7 @@ export class BannerComponent implements OnInit {
     this.router.navigateByUrl('/carrito');
   }
 
+  goToHome(){
+    this.router.navigateByUrl('');
+  }
 }
