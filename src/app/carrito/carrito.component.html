@@ -1,15 +1,15 @@
 <div *ngIf="localShoppingCart.length != 0">
     <mat-card *ngFor="let event of localShoppingCart; index as i">
-        <h1>{{event.title}} - {{event.subtitle}}</h1>
-        <div class="row" *ngFor="let element of event.list">
+        <h4>{{event.title}} - {{event.subtitle}}</h4>
+        <div class="row" *ngFor="let element of event.sessions">
             <div class="col-4">
-                {{element.date}}
+                {{formatDate(element.date)}}
             </div>
             <div class="col-4">
-                {{element.quantity}}
+                {{checkAvailability(element, event)}}
             </div>
             <div class="col-4">
-                <button (click)="deteleElement(element)">
+                <button (click)="deteleElement(event, element)">
                     <img [src]="'/assets/imgtrash.png'">
                 </button>
             </div>

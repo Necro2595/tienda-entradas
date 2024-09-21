@@ -72,8 +72,8 @@ export class TiendaComponent implements OnInit {
       } else {
         let eventToAdd: any = {
           id: this.idEvent,
-          title: this.event.title,
-          subtitle: this.event.subtitle,
+          title: this.event.event.title,
+          subtitle: this.event.event.subtitle,
           sessions: [{
             date: session.date,
             availability: 1
@@ -86,8 +86,8 @@ export class TiendaComponent implements OnInit {
     } else {
       let eventToAdd: any = {
         id: this.idEvent,
-        title: this.event.title,
-        subtitle: this.event.subtitle,
+        title: this.event.event.title,
+        subtitle: this.event.event.subtitle,
         sessions: [
           {
             date: session.date,
