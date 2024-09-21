@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CarritoService } from 'src/servicios/carrito/carrito.service';
 import { EventoService } from 'src/servicios/evento/evento.service';
 
 @Component({
@@ -16,17 +17,14 @@ export class TiendaComponent implements OnInit {
   constructor(
     private router: Router,
     private eventoService: EventoService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private carritoService: CarritoService
   ) {
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
-
-    window.addEventListener('storage', (e) => {
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
-    })
   }
 
   ngOnInit(): void {
@@ -40,6 +38,10 @@ export class TiendaComponent implements OnInit {
         this.event.sessions.sort((a: any,b: any) => a.date - b.date);
       })
     }
+
+    this.carritoService.cart.subscribe(cart => {
+      this.localShoppingCart = cart;
+    });
   }
 
   formatDate(timestamp: string){
@@ -52,8 +54,8 @@ export class TiendaComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  addSession(session: any){
-    if(this.localShoppingCart.length != 0){
+  addSession(session: any, event: any){
+    /*if(this.localShoppingCart.length != 0){
       let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
       if(index != -1){
         let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
@@ -98,11 +100,12 @@ export class TiendaComponent implements OnInit {
       
       this.localShoppingCart.push(eventToAdd);
       localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-    }
+    }*/
+    this.carritoService.addSession(session,event);
   }
 
-  removeSession(session: any){
-    if(this.localShoppingCart.length != 0){
+  removeSession(session: any,event:any){
+    /*if(this.localShoppingCart.length != 0){
       let index = this.localShoppingCart.findIndex((e) => e.id == this.idEvent);
       if(index != -1){
         let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
@@ -112,7 +115,8 @@ export class TiendaComponent implements OnInit {
           localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
         }
       } 
-    } 
+    } */
+   this.carritoService.removeSession(session,event)
   }
 
   sessionsAdded(session: any){

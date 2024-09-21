@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-carrito',
@@ -11,20 +12,20 @@ export class CarritoComponent implements OnInit {
   localShoppingCart: any[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private carritoService: CarritoService
   ) { 
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
-
-    window.addEventListener('storage', (e) => {
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
-    })
   }
 
   ngOnInit(): void {
+    this.carritoService.cart.subscribe(cart => {
+      this.localShoppingCart = cart;
+    });
   }
 
   deteleElement(event: any,element: any){

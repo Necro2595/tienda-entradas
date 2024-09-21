@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EventoService } from 'src/servicios/evento/evento.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -19,17 +20,14 @@ export class PaginaInicialComponent implements OnInit {
     private router: Router,
     private eventoService: EventoService,
     private breakPointObserver: BreakpointObserver,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private carritoService: CarritoService
   ) {
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
       this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
     }
-
-    window.addEventListener('storage', (e) => {
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
-    })
    }
 
   ngOnInit() {
@@ -38,6 +36,10 @@ export class PaginaInicialComponent implements OnInit {
     this.eventoService.getEvents().subscribe(data =>{
       this.listaEventos = data;
       this.listaEventos.sort((a,b) => a.endDate - b.endDate);
+    });
+
+    this.carritoService.cart.subscribe(cart => {
+      this.localShoppingCart = cart;
     });
   }
 

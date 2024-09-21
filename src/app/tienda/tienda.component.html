@@ -8,7 +8,7 @@
                         <span>{{formatDate(session.date)}} - Disponibles:{{sessionsAvailable(session.date)}}</span>
                     </div>
                     <div class="col-2">
-                        <button mat-icon-button color="primary" (click)="removeSession(session)" [disabled]="sessionsAvailable(session.date) - sessionsAdded(session.date) == sessionsAvailable(session.date)">
+                        <button mat-icon-button color="primary" (click)="removeSession(session,event)" [disabled]="sessionsAvailable(session.date) - sessionsAdded(session.date) == sessionsAvailable(session.date)">
                             <mat-icon>remove</mat-icon>
                         </button>
                     </div>
@@ -16,7 +16,7 @@
                         <span>{{sessionsAdded(session.date)}}</span>
                     </div>
                     <div class="col-2">
-                        <button mat-icon-button color="primary" (click)="addSession(session)" [disabled]="sessionsAvailable(session.date) == 0">
+                        <button mat-icon-button color="primary" (click)="addSession(session,event)" [disabled]="sessionsAvailable(session.date) == 0">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
