@@ -29,4 +29,16 @@ export class BannerComponent implements OnInit {
   goToHome(){
     this.router.navigateByUrl('');
   }
+
+  checkCart(){
+    let count = 0;
+    if(this.localShoppingCart.length != 0){
+      this.localShoppingCart.forEach((e) => {
+        count = count + e.sessions.length;
+      })
+      return count;
+    } else{
+      return count;
+    }
+  }
 }

@@ -3,7 +3,8 @@
         <h1 (click)="goToHome()">Mi tienda de entradas</h1>
     </div>
     <div class="col-1">
-        <button mat-stroked-button class="cartButton" (click)="goToCart()">
+        <button mat-stroked-button class="cartButton" (click)="goToCart()"
+        matBadge="{{checkCart()}}" matBadgePosition="after"  matBadgePosition="below" [matBadgeHidden]="localShoppingCart.length == 0">
             <mat-icon>shopping_cart</mat-icon>
         </button>
     </div>
