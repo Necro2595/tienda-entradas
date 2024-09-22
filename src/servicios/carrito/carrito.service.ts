@@ -94,19 +94,6 @@ export class CarritoService {
   }
 
   deteleElement(event: any,element: any){
-    /*let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
-
-    let sessionsFiltered: any[] = this.localShoppingCart[index].sessions.filter((e: any) => e.date != element.date);
-    
-    if(sessionsFiltered.length != 0){
-      this.localShoppingCart[index].sessions = sessionsFiltered;
-      //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-      this.updateCart();
-    } else{
-      this.localShoppingCart = this.localShoppingCart.filter(e => e.id != event.id);
-      //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-      this.updateCart();
-    }*/
       if(this.localShoppingCart.length != 0){
         let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
         if(index != -1){

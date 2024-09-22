@@ -112,5 +112,4 @@ export class TiendaComponent implements OnInit {
       return sessionsAvailable;
     } 
   }
-
 }
