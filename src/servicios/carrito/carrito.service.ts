@@ -94,7 +94,7 @@ export class CarritoService {
   }
 
   deteleElement(event: any,element: any){
-    let index = this.localShoppingCart.findIndex((e) => e.id = event.id);
+    let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
 
     let sessionsFiltered: any[] = this.localShoppingCart[index].sessions.filter((e: any) => e.date != element.date);
     
