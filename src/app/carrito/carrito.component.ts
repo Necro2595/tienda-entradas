@@ -29,17 +29,20 @@ export class CarritoComponent implements OnInit {
   }
 
   deteleElement(event: any,element: any){
-    let index = this.localShoppingCart.findIndex((e) => e.id = event.id);
+    /*let index = this.localShoppingCart.findIndex((e) => e.id = event.id);
 
     let sessionsFiltered: any[] = this.localShoppingCart[index].sessions.filter((e: any) => e.date != element.date);
     
     if(sessionsFiltered.length != 0){
       this.localShoppingCart[index].sessions = sessionsFiltered;
       localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
+      this.carritoService.updateCart();
     } else{
       this.localShoppingCart = this.localShoppingCart.filter(e => e.id != event.id);
       localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
-    }
+      this.carritoService.updateCart();
+    }*/
+   this.carritoService.deteleElement(event,element);
   }
 
   goToHome(){
@@ -57,6 +60,10 @@ export class CarritoComponent implements OnInit {
   }
 
   checkAvailability(element: any, event: any){
+    this.carritoService.cart.subscribe(cart => {
+      this.localShoppingCart = cart;
+    });
+    
     let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
     
     let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == element.date);
