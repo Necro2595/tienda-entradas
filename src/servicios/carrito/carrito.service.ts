@@ -94,7 +94,7 @@ export class CarritoService {
   }
 
   deteleElement(event: any,element: any){
-    let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
+    /*let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
 
     let sessionsFiltered: any[] = this.localShoppingCart[index].sessions.filter((e: any) => e.date != element.date);
     
@@ -106,7 +106,31 @@ export class CarritoService {
       this.localShoppingCart = this.localShoppingCart.filter(e => e.id != event.id);
       //localStorage.setItem('shoppingCart',JSON.stringify(this.localShoppingCart));
       this.updateCart();
-    }
+    }*/
+      if(this.localShoppingCart.length != 0){
+        let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
+        if(index != -1){
+          let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == element.date);
+          if(indexSession != -1){
+            let n = this.localShoppingCart[index].sessions[indexSession].availability - 1;
+            if(n != 0 ){
+              this.localShoppingCart[index].sessions[indexSession].availability = n;
+              this.updateCart();
+            } else {
+              let newList = this.localShoppingCart[index].sessions.filter((e: any,indexB: any) => indexB != indexSession);
+              if(newList.length == 0){
+                let newFilteredList = this.localShoppingCart.filter((e:any,indexA:any) => index !== indexA);
+                this.localShoppingCart = newFilteredList;
+                this.updateCart();
+              } else {
+                this.localShoppingCart[index].sessions = newList;
+                this.updateCart();
+              }
+            }
+            
+          }
+        } 
+      } 
   }
 
   updateCart() {
