@@ -11,7 +11,7 @@
             <p *ngIf="isLargeScreen" [innerHtml]="checkText(evento.description)"></p>
         </mat-card-content>
         <button mat-flat-button color="primary" class="buttonFooter" (click)="goToShop(evento.id)">
-                Comprar
+            <mat-icon>add_shopping_cart</mat-icon> Comprar
         </button>
     </mat-card>
 </div>
