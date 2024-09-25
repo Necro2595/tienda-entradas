@@ -1,5 +1,5 @@
 <div *ngIf="localShoppingCart.length != 0">
-    <mat-card *ngFor="let event of localShoppingCart; index as i">
+    <mat-card class="card" *ngFor="let event of localShoppingCart; index as i">
         <h4>{{event.title}} - {{event.subtitle}}</h4>
         <div class="row" *ngFor="let element of event.sessions">
             <div class="container">

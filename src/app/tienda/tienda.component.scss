@@ -28,3 +28,14 @@
         grid-template-columns: 100%
     }
 }
+
+.card {
+    border-width: 2px;
+    border-color: lightgray;
+    border-style: solid;
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+}
