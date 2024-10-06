@@ -12,7 +12,7 @@ export class EventoService {
   eventoInfo184: string = 'assets/data/event-info-184.json';
 
   constructor(
-    private http: HttpClient
+    private readonly http: HttpClient
   ) { }
 
   getEvents(): Observable<any>{

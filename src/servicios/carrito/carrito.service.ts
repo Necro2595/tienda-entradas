@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CarritoService {
 
-  private localShoppingCart : any[] = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
-  private cartSubject = new BehaviorSubject<any[]>(this.localShoppingCart);
+  private localShoppingCart : any[] = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
+  private readonly cartSubject = new BehaviorSubject<any[]>(this.localShoppingCart);
 
   cart = this.cartSubject.asObservable();
 

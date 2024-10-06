@@ -15,21 +15,21 @@ export class TiendaComponent implements OnInit {
   idEvent: number = 0;
 
   constructor(
-    private router: Router,
-    private eventoService: EventoService,
-    private activatedRoute: ActivatedRoute,
-    private carritoService: CarritoService
+    private readonly router: Router,
+    private readonly eventoService: EventoService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly carritoService: CarritoService
   ) {
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
     }
   }
 
   ngOnInit(): void {
     
-    let idRoute: string  = this.activatedRoute.snapshot.paramMap.get('id') || '';
+    let idRoute: string  = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
     if(idRoute && idRoute != ''){
       this.idEvent = +idRoute;

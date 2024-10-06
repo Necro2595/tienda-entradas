@@ -17,16 +17,16 @@ export class PaginaInicialComponent implements OnInit {
   localShoppingCart: any[] = [];
 
   constructor(
-    private router: Router,
-    private eventoService: EventoService,
-    private breakPointObserver: BreakpointObserver,
-    private domSanitizer: DomSanitizer,
-    private carritoService: CarritoService
+    private readonly router: Router,
+    private readonly eventoService: EventoService,
+    private readonly breakPointObserver: BreakpointObserver,
+    private readonly domSanitizer: DomSanitizer,
+    private readonly carritoService: CarritoService
   ) {
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
     }
    }
 
