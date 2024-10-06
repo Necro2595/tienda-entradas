@@ -12,8 +12,8 @@ export class BannerComponent implements OnInit {
   localShoppingCart: any[] = [];
 
   constructor(
-    private router: Router,
-    private carritoService: CarritoService
+    private readonly router: Router,
+    private readonly carritoService: CarritoService
   ) { }
 
   ngOnInit(): void {
