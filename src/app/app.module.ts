@@ -22,12 +22,15 @@ import { MatBadgeModule } from '@angular/material/badge';
         CarritoComponent,
         BannerComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent], 
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         CommonModule,
         MatIconModule,
         MatCardModule,
         MatButtonModule,
-        MatBadgeModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        MatBadgeModule], 
+    providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
