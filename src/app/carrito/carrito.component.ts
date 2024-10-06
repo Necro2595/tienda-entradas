@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
@@ -12,13 +12,13 @@ export class CarritoComponent implements OnInit {
   localShoppingCart: any[] = [];
 
   constructor(
-    private router: Router,
-    private carritoService: CarritoService
+    private readonly router: Router,
+    private readonly carritoService: CarritoService
   ) { 
     if(localStorage.getItem('shoppingCart') == null){
       localStorage.setItem('shoppingCart',JSON.stringify([]));
     } else{
-      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+      this.localShoppingCart = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
     }
   }
 
