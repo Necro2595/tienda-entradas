@@ -24,7 +24,9 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit(): void {
     this.carritoService.cart.subscribe(cart => {
-      this.localShoppingCart = cart;
+      if(cart){
+        this.localShoppingCart = cart;
+      }
     });
   }
 
@@ -48,7 +50,9 @@ export class CarritoComponent implements OnInit {
 
   checkAvailability(element: any, event: any){
     this.carritoService.cart.subscribe(cart => {
-      this.localShoppingCart = cart;
+      if(cart){
+        this.localShoppingCart = cart;
+      }
     });
     
     let index = this.localShoppingCart.findIndex((e) => e.id == event.id);

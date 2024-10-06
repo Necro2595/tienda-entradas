@@ -34,12 +34,16 @@ export class PaginaInicialComponent implements OnInit {
     this.checkScreenSize();
 
     this.eventoService.getEvents().subscribe(data =>{
-      this.listaEventos = data;
-      this.listaEventos.sort((a,b) => a.endDate - b.endDate);
+      if(data){
+        this.listaEventos = data;
+        this.listaEventos.sort((a,b) => a.endDate - b.endDate);
+      }
     });
 
     this.carritoService.cart.subscribe(cart => {
-      this.localShoppingCart = cart;
+      if(cart){
+        this.localShoppingCart = cart;
+      }
     });
   }
 

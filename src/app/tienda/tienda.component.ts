@@ -34,13 +34,17 @@ export class TiendaComponent implements OnInit {
     if(idRoute && idRoute != ''){
       this.idEvent = +idRoute;
       this.eventoService.getEventInfo(this.idEvent).subscribe(data =>{
-        this.event = data;
-        this.event.sessions.sort((a: any,b: any) => a.date - b.date);
+        if(data){
+          this.event = data;
+          this.event.sessions.sort((a: any,b: any) => a.date - b.date);
+        }
       })
     }
 
     this.carritoService.cart.subscribe(cart => {
-      this.localShoppingCart = cart;
+      if(cart){
+        this.localShoppingCart = cart;
+      }
     });
   }
 
@@ -85,7 +89,9 @@ export class TiendaComponent implements OnInit {
   sessionsAvailable(session:any){
     
     this.carritoService.cart.subscribe(cart => {
-      this.localShoppingCart = cart;
+      if(cart){
+        this.localShoppingCart = cart;
+      }
     });
 
     let sessionsAdded: number = 0;
