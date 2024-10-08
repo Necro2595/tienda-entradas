@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BannerComponent } from './banner/banner.component';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
