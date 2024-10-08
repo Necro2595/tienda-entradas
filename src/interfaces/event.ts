@@ -4,26 +4,26 @@ export interface Event {
 }
 
 export interface EventData {
-    id: number,
+    id: string,
     title: string,
     subtitle: string,
     image: string
 }
 
 export interface ShoppingCartEvent {
-    id: number,
+    id: string,
     title: string,
     subtitle: string,
     sessions: EventSessions[]
 }
 
 export interface EventSessions {
-    date: number,
+    date: string,
     availability: number
 }
 
 export interface AllEvents {
-    id: number,
+    id: string,
     title: string,
     subtitle: string,
     image: string,

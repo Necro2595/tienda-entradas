@@ -78,7 +78,7 @@ export class TiendaComponent implements OnInit {
    this.carritoService.removeSession(session,event)
   }
 
-  sessionsAdded(session: EventSessions){
+  sessionsAdded(session: string){
     let sessionsAdded: number = 0;
 
     if(this.localShoppingCart.length != 0){
@@ -98,7 +98,7 @@ export class TiendaComponent implements OnInit {
     }
   }
 
-  sessionsAvailable(session:EventSessions){
+  sessionsAvailable(session:string){
     
     this.carritoService.cart.subscribe(cart => {
       if(cart){
