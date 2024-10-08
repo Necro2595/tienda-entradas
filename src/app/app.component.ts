@@ -10,7 +10,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     BannerComponent,
     CommonModule,
-    BrowserModule,
     RouterOutlet
   ],
   templateUrl: './app.component.html',
