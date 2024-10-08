@@ -1,9 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-banner',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule
+  ],
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss']
 })

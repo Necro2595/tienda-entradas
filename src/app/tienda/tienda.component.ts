@@ -2,9 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarritoService } from 'src/servicios/carrito/carrito.service';
 import { EventoService } from 'src/servicios/evento/evento.service';
+import { CarritoComponent } from "../carrito/carrito.component";
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-tienda',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    CarritoComponent,
+    MatIconModule
+],
   templateUrl: './tienda.component.html',
   styleUrls: ['./tienda.component.scss']
 })

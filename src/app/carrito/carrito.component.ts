@@ -1,9 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-carrito',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
