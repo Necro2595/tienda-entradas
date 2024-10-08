@@ -11,7 +11,11 @@ export class CarritoService {
 
   cart = this.cartSubject.asObservable();
 
-  constructor() { }
+  constructor() {
+    localStorage.removeItem('shoppingCart');
+    this.localShoppingCart = [];
+    this.cartSubject.next(this.localShoppingCart);
+   }
 
   getCart(){
     return this.localShoppingCart;
