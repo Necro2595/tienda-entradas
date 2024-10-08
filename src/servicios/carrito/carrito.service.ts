@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Event, EventData, EventSessions, ShoppingCartEvent } from 'src/interfaces/event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
 
-  private localShoppingCart : any[] = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
+  private localShoppingCart : ShoppingCartEvent[] = JSON.parse(localStorage.getItem('shoppingCart') ?? '[]');
   private readonly cartSubject = new BehaviorSubject<any[]>(this.localShoppingCart);
 
   cart = this.cartSubject.asObservable();
@@ -21,17 +22,17 @@ export class CarritoService {
     return this.localShoppingCart;
   }
 
-  addSession(session: any, event: any){
+  addSession(session: EventSessions, event: Event){
     if(this.localShoppingCart.length != 0){
       let index = this.localShoppingCart.findIndex((e) => e.id == event.event.id);
       if(index != -1){
-        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
+        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: EventSessions) => e.date == session.date);
         if(indexSession != -1){
           let n = this.localShoppingCart[index].sessions[indexSession].availability + 1;
           this.localShoppingCart[index].sessions[indexSession].availability = n;
           this.updateCart();
         } else {
-          let sessionToAdd: any = {
+          let sessionToAdd: EventSessions = {
             date: session.date,
             availability: 1
           }
@@ -39,7 +40,7 @@ export class CarritoService {
           this.updateCart();
         }
       } else {
-        let eventToAdd: any = {
+        let eventToAdd: ShoppingCartEvent = {
           id: event.event.id,
           title: event.event.title,
           subtitle: event.event.subtitle,
@@ -70,11 +71,11 @@ export class CarritoService {
     }
   }
 
-  removeSession(session: any, event: any){
+  removeSession(session: EventSessions, event: Event){
     if(this.localShoppingCart.length != 0){
       let index = this.localShoppingCart.findIndex((e) => e.id == event.event.id);
       if(index != -1){
-        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: any) => e.date == session.date);
+        let indexSession = this.localShoppingCart[index].sessions.findIndex((e: EventSessions) => e.date == session.date);
         if(indexSession != -1){
           let n = this.localShoppingCart[index].sessions[indexSession].availability - 1;
           if(n != 0 ){
@@ -97,7 +98,7 @@ export class CarritoService {
     } 
   }
 
-  deteleElement(event: any,element: any){
+  deteleElement(event: EventData,element: any){
       if(this.localShoppingCart.length != 0){
         let index = this.localShoppingCart.findIndex((e) => e.id == event.id);
         if(index != -1){
