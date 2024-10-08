@@ -6,6 +6,7 @@ import { CarritoComponent } from "../carrito/carrito.component";
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { Event, EventSessions, ShoppingCartEvent } from 'src/interfaces/event';
 
 @Component({
   selector: 'app-tienda',
@@ -21,8 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class TiendaComponent implements OnInit {
 
-  localShoppingCart: any[] = [];
-  event!: any;
+  localShoppingCart: ShoppingCartEvent[] = [];
+  event!: Event;
   idEvent: number = 0;
 
   constructor(
@@ -69,15 +70,15 @@ export class TiendaComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  addSession(session: any, event: any){
+  addSession(session: EventSessions, event: Event){
     this.carritoService.addSession(session,event);
   }
 
-  removeSession(session: any,event:any){
+  removeSession(session: EventSessions,event:Event){
    this.carritoService.removeSession(session,event)
   }
 
-  sessionsAdded(session: any){
+  sessionsAdded(session: EventSessions){
     let sessionsAdded: number = 0;
 
     if(this.localShoppingCart.length != 0){
@@ -97,7 +98,7 @@ export class TiendaComponent implements OnInit {
     }
   }
 
-  sessionsAvailable(session:any){
+  sessionsAvailable(session:EventSessions){
     
     this.carritoService.cart.subscribe(cart => {
       if(cart){

@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AllEvents, ShoppingCartEvent } from 'src/interfaces/event';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -23,9 +24,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class PaginaInicialComponent implements OnInit {
 
-  listaEventos: any[] = [];
+  listaEventos: AllEvents[] = [];
   isLargeScreen: boolean = true;
-  localShoppingCart: any[] = [];
+  localShoppingCart: ShoppingCartEvent[] = [];
 
   constructor(
     private readonly router: Router,

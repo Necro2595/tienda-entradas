@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { ShoppingCartEvent } from 'src/interfaces/event';
 import { CarritoService } from 'src/servicios/carrito/carrito.service';
 
 @Component({
@@ -20,7 +21,7 @@ import { CarritoService } from 'src/servicios/carrito/carrito.service';
 })
 export class CarritoComponent implements OnInit {
 
-  localShoppingCart: any[] = [];
+  localShoppingCart: ShoppingCartEvent[] = [];
 
   constructor(
     private readonly router: Router,
